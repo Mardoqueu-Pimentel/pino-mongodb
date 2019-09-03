@@ -36,6 +36,10 @@ function handleConnection (e, mClient) {
     insert(collection, log(line))
   })
 
+  emitter.on('end', () => {
+    mClient.close()
+  })
+
   process.on('SIGINT', () => {
     mClient.close(process.exit)
   })
